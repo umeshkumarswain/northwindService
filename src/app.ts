@@ -5,6 +5,7 @@ import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 import Controller from '@/utils/interfaces/controller.interface'
+import errorMiddleware from "./middleware/error.middleware";
 
 class App{
     public express: Application;
@@ -33,7 +34,7 @@ class App{
         });
     }
     private initialiseErrorHandling():void{
-                this.express.use(ErrorMiddleware())
+                this.express.use(errorMiddleware)
     }
 
     private initialiseDatabaseConnection():void{
@@ -42,13 +43,13 @@ class App{
 }
 public listen():void{
     this.express.listen(this.port,()=>{
-        console.log(`App is listening on port ${this.port}`)
+        console.log(`App is listening clon port ${this.port}`)
     });
 }
 }
 
 export default App;
 
-function ErrorMiddleware(): any {
-    throw new Error("Function not implemented.");
-}
+// function ErrorMiddleware(): any {
+//     throw new Error("Function not implemented.");
+// }
